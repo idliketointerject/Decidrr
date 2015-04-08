@@ -25,86 +25,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        //Button1
-        Button dirChooserButton1 = (Button) findViewById(R.id.button1);
-        dirChooserButton1.setOnClickListener(new OnClickListener(){
-            String m_chosen;
-            @Override
-            public void onClick(View v) {
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                //Create FileOpenDialog and register a callback
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                SimpleFileDialog FileOpenDialogTrain =  new SimpleFileDialog(MainActivity.this, "FileOpen",
-                        new SimpleFileDialog.SimpleFileDialogListener()
-                        {
-                            @Override
-                            public void onChosenDir(String chosenDir)
-                            {
-                                // The code in this function will be executed when the dialog OK button is pushed
-                                m_chosen = chosenDir;
-                                Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: " +
-                                        m_chosen, Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                //You can change the default filename using the public variable "Default_File_Name"
-                FileOpenDialogTrain.default_file_name = "";
-                FileOpenDialogTrain.chooseFile_or_Dir();
-
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-
-            }
-        });
-
-        //Button2
-        Button dirChooserButton2 = (Button) findViewById(R.id.button2);
-        dirChooserButton2.setOnClickListener(new OnClickListener()
-        {
-            String m_chosen;
-            @Override
-            public void onClick(View v) {
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                //Create FileSaveDialog and register a callback
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-                SimpleFileDialog FileOpenDialogTest =  new SimpleFileDialog(MainActivity.this, "FileOpen",
-                        new SimpleFileDialog.SimpleFileDialogListener()
-                        {
-                            @Override
-                            public void onChosenDir(String chosenDir)
-                            {
-                                // The code in this function will be executed when the dialog OK button is pushed
-                                m_chosen = chosenDir;
-                                Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: " +
-                                        m_chosen, Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                //You can change the default filename using the public variable "Default_File_Name"
-                FileOpenDialogTest.default_file_name = "my_default.txt";
-                FileOpenDialogTest.chooseFile_or_Dir();
-
-                /////////////////////////////////////////////////////////////////////////////////////////////////
-
-            }
-        });
-
-        //Button3
-        Button dirChooserButton3 = (Button) findViewById(R.id.button3);
-        dirChooserButton3.setOnClickListener(new OnClickListener()
-        {
-            String m_chosen;
-            @Override
-            public void onClick(View v) {
-                //redirect to new activity
-                //run the tree
-            }
-        });
-
     }
 
     //@Override
@@ -147,7 +74,86 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+
+
+            //Button1
+            Button dirChooserButton1 = (Button) rootView.findViewById(R.id.button1);
+            dirChooserButton1.setOnClickListener(new OnClickListener(){
+                String m_chosen;
+                @Override
+                public void onClick(View v) {
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    //Create FileOpenDialog and register a callback
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    final SimpleFileDialog FileOpenDialogTrain =  new SimpleFileDialog(getActivity(), "FileOpen",
+                            new SimpleFileDialog.SimpleFileDialogListener()
+                            {
+                                @Override
+                                public void onChosenDir(String chosenDir)
+                                {
+                                    // The code in this function will be executed when the dialog OK button is pushed
+                                    m_chosen = chosenDir;
+                                    Toast.makeText(getActivity(), "Chosen FileOpenDialog File: " +
+                                            m_chosen, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                    //You can change the default filename using the public variable "Default_File_Name"
+                    FileOpenDialogTrain.default_file_name = "";
+                    FileOpenDialogTrain.chooseFile_or_Dir();
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+                }
+            });
+
+            //Button2
+            Button dirChooserButton2 = (Button) rootView.findViewById(R.id.button2);
+            dirChooserButton2.setOnClickListener(new OnClickListener()
+            {
+                String m_chosen;
+                @Override
+                public void onClick(View v) {
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    //Create FileSaveDialog and register a callback
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    SimpleFileDialog FileOpenDialogTest =  new SimpleFileDialog(getActivity(), "FileOpen",
+                            new SimpleFileDialog.SimpleFileDialogListener()
+                            {
+                                @Override
+                                public void onChosenDir(String chosenDir)
+                                {
+                                    // The code in this function will be executed when the dialog OK button is pushed
+                                    m_chosen = chosenDir;
+                                    Toast.makeText(getActivity(), "Chosen FileOpenDialog File: " +
+                                            m_chosen, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                    //You can change the default filename using the public variable "Default_File_Name"
+                    FileOpenDialogTest.default_file_name = "my_default.txt";
+                    FileOpenDialogTest.chooseFile_or_Dir();
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+                }
+            });
+
+            //Button3
+            //Button dirChooserButton3 = (Button) findViewById(R.id.button3);
+            //dirChooserButton3.setOnClickListener(new OnClickListener()
+            //{
+            //String m_chosen;
+            //  @Override
+            //public void onClick(View v) {
+            //redirect to new activity
+            //run the tree
+            //}
+            //});
+
+
             return rootView;
         }
     }
